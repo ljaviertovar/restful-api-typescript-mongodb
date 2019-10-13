@@ -1,2 +1,2 @@
-# restful-api-typescript-jwt
-Restful API with Nodejs, TypeScript and JWT
+# restful-api-typescript-mogodb-jwt
+Restful API with Nodejs, TypeScript, MongoDB and JWT
