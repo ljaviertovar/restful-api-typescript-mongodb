@@ -1,2 +1,3 @@
 # restful-api-typescript-mogodb-jwt
-Restful API with Nodejs, TypeScript, MongoDB and JWT
+Restful API for a BLOG
+with Nodejs, TypeScript, MongoDB and JWT
