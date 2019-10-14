@@ -6,8 +6,7 @@ import compression from 'compression';
 import cors from 'cors';
 
 import indexRoutes from './routes/indexRoutes';
-import { settings } from 'cluster';
-
+import postRoutes from './routes/postRoutes';
 
 class Server{
 
@@ -26,7 +25,9 @@ class Server{
         mongoose.set('useFindAndModify', true);
         mongoose.connect(process.env.MONGODB_URI || MONGO_URI,{
             useNewUrlParser: true,
-            useCreateIndex: true
+            useCreateIndex: true,
+            useUnifiedTopology: true,
+            useFindAndModify : false
         })
         .then(db => console.log('DB is connected'));
 
@@ -44,6 +45,7 @@ class Server{
 
     routes(){
         this.app.use(indexRoutes);
+        this.app.use('/api/posts', postRoutes);
     }
 
     start(){
