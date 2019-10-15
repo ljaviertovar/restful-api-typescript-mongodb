@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
+import { signupValidation } from '../libs/joi'
 
 class UserController{
    
@@ -37,7 +38,17 @@ class UserController{
 
     }
 
-    public async createUser(req: Request, res: Response): Promise<void>{
+    public async createUser(req: Request, res: Response): Promise<void | any>{
+
+        // validation
+        const { error } = signupValidation(req.body);
+        if(error) return res.status(400).json(error.message);
+
+        // username validation
+        const usernameExist = await User.findOne({ username: req.body.username });
+        console.log(usernameExist);
+        if(usernameExist) return res.status(400).json({ msg: 'Username already exist.' });
+
         try{
             const { name, email, username, password } = req.body;
             
