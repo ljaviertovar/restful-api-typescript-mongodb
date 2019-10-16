@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import userController from '../controllers/user.controller';
+import { tokenValidation } from '../middlewares/verifyToken'
 
 class UserRoutes{
 
@@ -11,11 +12,11 @@ class UserRoutes{
     }
 
     routes(){
-        this.router.get('/', userController.getUsers);
-        this.router.get('/:username', userController.getUser);
-        this.router.post('/', userController.createUser);
-        this.router.put('/:username', userController.updateUser);
-        this.router.delete('/:username', userController.deleteUser);
+        this.router.get('/', tokenValidation, userController.getUsers);
+        this.router.get('/:username', tokenValidation, userController.getUser);
+        this.router.post('/', tokenValidation, userController.createUser);
+        this.router.put('/:username', tokenValidation, userController.updateUser);
+        this.router.delete('/:username', tokenValidation, userController.deleteUser);
     }
     
 }

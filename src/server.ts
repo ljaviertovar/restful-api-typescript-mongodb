@@ -8,6 +8,7 @@ import cors from 'cors';
 import indexRoutes from './routes/indexRoutes';
 import postRoutes from './routes/postRoutes';
 import userRoutes from './routes/userRoutes';
+import authRoutes from './routes/authRoutes';
 
 class Server{
 
@@ -48,6 +49,7 @@ class Server{
         this.app.use(indexRoutes);
         this.app.use('/api/posts', postRoutes);
         this.app.use('/api/users', userRoutes);
+        this.app.use('/api/auth', authRoutes);
     }
 
     start(){

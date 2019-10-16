@@ -36,5 +36,18 @@ export const postValidation = (data: object)  => {
 
 };
 
+export const  signinValidation = (data: object) => {
+    const userSchema = Joi.object({
+        email: Joi
+            .string()
+            .required(),
+        password: Joi
+            .string()
+            .min(6)
+            .required()
+    });
+    return userSchema.validate(data);
+};
+
 
 
